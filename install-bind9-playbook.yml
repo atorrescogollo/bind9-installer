@@ -1,0 +1,5 @@
+- name: Install Bind9
+  hosts: ns
+  roles:
+  - role: ../../bind9-installer
+

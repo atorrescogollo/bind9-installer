@@ -1,0 +1,27 @@
+- name: Upgrade all packages
+  become: yes
+  apt:
+    name: '*'
+    update_cache: yes
+    state: latest
+
+- name: Install Webmin apt key
+  become: yes
+  apt_key:
+    url: http://www.webmin.com/jcameron-key.asc
+    state: present
+
+- name: Add Webmin apt repository
+  become: yes
+  apt_repository:
+    repo: deb https://download.webmin.com/download/repository sarge contrib
+    state: present
+
+- name: Install Bind9 and Webmin
+  become: yes
+  apt:
+    pkg:
+    - apt-transport-https
+    - bind9
+    - bind9-doc
+    - webmin
