@@ -25,3 +25,13 @@
     - bind9
     - bind9-doc
     - webmin
+
+- name: Config Webmin to bind only localhost
+  become: yes
+  lineinfile:
+    path: /etc/webmin/miniserv.conf
+    regexp: "^bind="
+    line: 'bind=127.0.0.1'
+    insertbefore: "^port="
+  notify:
+  - Restart webmin
